@@ -1,8 +1,6 @@
-import java.util.*; 
-
 public class BalanceScale {
-	static int[] 	myWeights 	= { 1, 2, 3, 4, 5, 7, 8, 12, 20, 35, 61, 80};
-    static int[] 	toWeight  	= { 1, 3, 4, 5, 7 , 12, 18, 20, 25, 29, 32};
+	static int[] 	myWeights 	= { 1, 2, 3, 4, 5, 7, 8, 12, 20, 35, 61 ,80};
+    static int[] 	toWeight  	= { 1, 6, 7, 9, 24, 110, 111, 115, 62, 24, 202, 203, 204, 205 };
     static Boolean 	found 		= false;
 
     static void testIfaCombinationForThisWeightExist(int weight) {
@@ -10,6 +8,10 @@ public class BalanceScale {
     	int[] arr = new int[lengthMW];
     	found = false;
     	findTheCombinationOfTheWeights(arr,0,lengthMW,weight,weight);
+    	if(found == false)
+    	{
+    		System.out.println(weight+"g:\tno;");
+    	}
     }
 
     static void findTheCombinationOfTheWeights(int[] combinationArray,
@@ -32,10 +34,10 @@ public class BalanceScale {
     		}
 
     		if(sum == weight){
+    			System.out.printf("%dg:\tyes; used myWeights = ",weight);
     			for(int index = 0; index< weightArray.length();index++){
     				System.out.printf("%d ",weightArray.getItemAt(index));
     			}
-    			System.out.printf("| %d",weight);
     			System.out.println();
     			found = true;
     			return;

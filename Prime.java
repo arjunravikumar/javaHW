@@ -3,10 +3,10 @@
  * Prime.java 
  * 
  * Version: 
- *     2.1
+ *     3.0
  * 
  * Revisions: 
- *     16
+ *     18
  */
 
 
@@ -22,60 +22,58 @@
 
 class Prime {
 
-	/**
-   	* Check if the given number is prime or not
-   	* and return the status
-   	*
-   	* @param    n    rumber to check if prime
-   	*/
-
-   	static final int LIMIT = 15; //will take prime numbers <= LIMIT
-
-	static boolean isPrime(int n) {
-		for( int index = 2; index < n; index ++ ) {
-			if( n % index  == 0 )
-				return false;
-		}
-		return true;
-	}
-
+	static final int LIMIT = 15; //will take prime numbers <= LIMIT
 
 	/**
-   	* Given prime numbers and thier length
-   	* output the the sum and product of the primenumbers
-   	*
-   	* @param    primeNumbers    the array of prime numbers
-   	* @param    countOfPrimeNumbers    length of primeNumbers Array
-   	*/
-
-	static void printSumOfAllPrimes(int primeNumbers[], int countOfPrimeNumbers){
-		for (int index = 0;index < countOfPrimeNumbers; index++){
-			for (int index1 = index;index1 < countOfPrimeNumbers; index1++){
-				var firstPrime = primeNumbers[index];
-				var secondPrime = primeNumbers[index1];
-				System.out.println("The sum of all primes for "+ firstPrime*secondPrime
-					+ ":\t"+(firstPrime+secondPrime)
-					+"\t("+firstPrime + " + "+ secondPrime + ")");
+	* A description of what the method does
+	*
+	* @param 	numberToBeChecked	number whos prime factors are to be found
+	*								out needs to be passed here
+	*
+	* @return 	primeFactors    	returns the list of prime factors when 
+	*								the number of primefactors = 2
+	*/
+	static int[] findAllPrimeFactorsOfNumber(int numberToBeChecked) {
+		int compositeNumber = numberToBeChecked;
+		int index = 2;
+		int[] primeFactors = new int[compositeNumber/2];
+		int countOfPrimeFactors = 0;
+		while(index <= (compositeNumber+1)/2) {
+			if(numberToBeChecked%index == 0) { 		
+				numberToBeChecked = numberToBeChecked/index;	
+				primeFactors[countOfPrimeFactors++] = index;	//primefactors-
+																//stored here
+			} else {
+				index++;
 			}
 		}
+		if(countOfPrimeFactors == 2){
+			return primeFactors;
+		} else
+		{
+			return null;
+		}
 	}
 
 	/**
-   	* main function
-   	* 
-   	*
-   	* @param    n    number to check if prime
-   	*/
+	* main function
+	* 
+	* @param    args    command line arguments (ignored)
+	*/
 	
 	public static void main( String args[] ) {
-		int[] primeNumbers = new int[LIMIT/2]; //length will be always < limit/2
-		int countOfPrimeNumbers = 0;
-		for ( int index = 2; index <= LIMIT; index++){
-			if ( isPrime(index) ){
-				primeNumbers[countOfPrimeNumbers] = index;
-				countOfPrimeNumbers++;
+		int[] primeFactors = new int[2];
+		for(int index = 3; index<= LIMIT;index++) {
+			primeFactors = findAllPrimeFactorsOfNumber(index);
+			if(primeFactors != null) {	//only numbers having 2 prime factors
+										//will be passed here rest will be null
+				int firstPrime = primeFactors[0];
+				int secondPrime = primeFactors[1];
+					System.out.println("The sum of all primes for "
+						+ firstPrime*secondPrime+ ":\t" 
+						+ (firstPrime+secondPrime)
+						+"\t("+firstPrime + " + "+ secondPrime + ")");
 			}
 		}
-		printSumOfAllPrimes(primeNumbers,countOfPrimeNumbers);
 	}
 }
