@@ -6,7 +6,7 @@
  *     3.0
  * 
  * Revisions: 
- *     18
+ *     19
  */
 
 
@@ -25,7 +25,8 @@ class Prime {
 	static final int LIMIT = 15; //will take prime numbers <= LIMIT
 
 	/**
-	* A description of what the method does
+	* This function finds all the prime factors of a given number
+	* and returns theprime factors when the count of the prime factors are 2
 	*
 	* @param 	numberToBeChecked	number whos prime factors are to be found
 	*								out needs to be passed here
@@ -33,12 +34,14 @@ class Prime {
 	* @return 	primeFactors    	returns the list of prime factors when 
 	*								the number of primefactors = 2
 	*/
+
 	static int[] findAllPrimeFactorsOfNumber(int numberToBeChecked) {
 		int compositeNumber = numberToBeChecked;
 		int index = 2;
 		int[] primeFactors = new int[compositeNumber/2];
 		int countOfPrimeFactors = 0;
-		while(index <= (compositeNumber+1)/2) {
+		while(index <= (compositeNumber+1)/2) {		//the heighest primefactor
+													//of n is n/2
 			if(numberToBeChecked%index == 0) { 		
 				numberToBeChecked = numberToBeChecked/index;	
 				primeFactors[countOfPrimeFactors++] = index;	//primefactors-
@@ -48,7 +51,7 @@ class Prime {
 			}
 		}
 		if(countOfPrimeFactors == 2){
-			return primeFactors;
+			return primeFactors;	//returns if the primefactor count is == 2
 		} else
 		{
 			return null;
