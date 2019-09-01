@@ -147,13 +147,15 @@ public class BalanceScaleLeftRight {
         int[] setInSubSets;
         int sumOfSubSets = 0;
         int count = 0;
-        int n = set.length; 
-        // loop for checking all the 2^n possible subsets
-        for (int index = 0; index < (1<<n); index++){
+        int length = set.length; 
+        // loop for checking all the 2^length possible subsets
+        // limit is next binary integer of length
+        for (int index = 0; index < (1<<length); index++){
             setInSubSets = new int[set.length];
             count = 0;
             sumOfSubSets = 0;
-            for (int jindex = 0; jindex < n; jindex++){
+            for (int jindex = 0; jindex < length; jindex++){
+                //binary "and" operation of every bit in index and right shift jindex
                 if ((index & (1 << jindex)) > 0){ 
                     //sum of the subsets stored
                     sumOfSubSets+= set[jindex];
