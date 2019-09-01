@@ -1,5 +1,5 @@
 /* 
- * BalanceScaleLeftRigth.java 
+ * BalanceScaleLeftRight.java 
  * 
  * Version: 
  *     1.2
